@@ -11,12 +11,12 @@ int main() {
 
     using Camera_t = universal::baseClass<
         CameraImpl,
+        CameraIpc,
         CameraGui,
-        GuiClass_t,
-        TerminalClass_t,
-        FileClass_t,
-        NetworkClass_t,
-        ReflectionClass_t
+        CameraTerm,
+        CameraFile,
+        CameraNet,
+        CameraReflect
     >;
 
 }
