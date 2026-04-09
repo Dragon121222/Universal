@@ -1,49 +1,40 @@
-#ifndef __BaseClassDrake__
-#define __BaseClassDrake__
+#ifndef __UnionClass__
+#define __UnionClass__
 
-namespace universal {
+namespace universe {
 
-    template<
-    typename ImplmentationClass_t,
-    typename IPCClass_t,
-    typename GuiClass_t,
-    typename TerminalClass_t,
-    typename FileClass_t,
-    typename NetworkClass_t,
-    typename ReflectionClass_t
-    >
-    class baseClass {
-        baseClass() {}
+template<
+    typename impl,
+    typename ipc,
+    typename gui,
+    typename term,
+    typename file,
+    typename net,
+    typename refl
+>
+class unionClass : 
+    public impl,
+    public ipc,
+    public gui,
+    public term,
+    public file,
+    public net,
+    public refl 
+{
+public:
+    
+    using impl_t = impl;
+    using ipc_t = ipc;
+    using gui_t = gui;
+    using term_t = term;
+    using file_t = file;
+    using net_t = net;
+    using refl_t = refl;
 
-        virtual void save() {
-            FileClass_t::save();
-        }
+    unionClass() {}
+    ~unionClass() {}
+};
 
-        virtual void gui() {
-            ImplmentationClass_t::gui();
-        }
-
-        virtual void impl() {
-            ImplmentationClass_t::impl();
-        }
-
-        virtual void ipc() {
-            ImplmentationClass_t::ipc();
-        }
-
-        virtual void list() {
-            NetworkClass_t::list();
-        }
-
-        virtual void refl() {
-            ReflectionClass_t::refl();
-        }
-
-        virtual void term() {
-            TerminalClass_t::term();
-        }
-
-    };
 }
 
 #endif

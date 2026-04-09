@@ -1,22 +1,15 @@
-#include "baseClassDrake.h"
-#include "file/file.h"
-#include "gui/gui.h"
-#include "impl/impl.h"
-#include "ipc/ipc.h"
-#include "network/network.h"
-#include "reflection/reflection.h"
-#include "terminal/terminal.h"
+#include "main.h"
 
 int main() {
 
-    using Camera_t = universal::baseClass<
-        CameraImpl,
-        CameraIpc,
-        CameraGui,
-        CameraTerm,
-        CameraFile,
-        CameraNet,
-        CameraReflect
-    >;
+    universe::demoUnion x; 
+
+    x.log("Test Log\n");
+    x.call();
+    x.draw();
+    x.save();
+    x.show();
+    x.ipc_t::send();
+    x.net_t::send();
 
 }
