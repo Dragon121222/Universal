@@ -2,20 +2,20 @@
 #define __UniversalTrivialNetwork__
 
 namespace universe {
-    template<typename dType>
-    class trivialNet {
-    public:
+template<typename dType>
+class trivialNet {
+public:
 
-        using typeTag = Net;
-        using type    = trivialNet;
+    using typeTag = Net;
+    using type    = trivialNet;
 
-        trivialNet() {}
-        ~trivialNet() {}
-        void send() {
-            as<dType*>(this)->log("Calling Net!\n");
-        }
+    trivialNet() {}
+    ~trivialNet() {}
+    void send() {
+        as<dType*>(this)->log("Calling Net!\n");
+    }
 
-    };
+};
 }
 
 #endif
