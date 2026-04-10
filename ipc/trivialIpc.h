@@ -2,7 +2,7 @@
 #define __UniversalIpc__
 
 namespace universe {
-    template<typename derived>
+    template<typename dType>
     class trivialIpc {
     public:
 
@@ -12,7 +12,7 @@ namespace universe {
         trivialIpc() {}
         ~trivialIpc() {}
         void send() {
-            static_cast<derived*>(this)->derived::log("Calling IPC!\n");
+            as<dType*>(this)->log("Calling IPC!\n");
         }
 
     };

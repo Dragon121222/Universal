@@ -2,7 +2,7 @@
 #define __UniversalTrivialNetwork__
 
 namespace universe {
-    template<typename derived>
+    template<typename dType>
     class trivialNet {
     public:
 
@@ -12,7 +12,7 @@ namespace universe {
         trivialNet() {}
         ~trivialNet() {}
         void send() {
-            static_cast<derived*>(this)->derived::log("Calling Net!\n");
+            as<dType*>(this)->log("Calling Net!\n");
         }
 
     };

@@ -2,7 +2,7 @@
 #define __UniversalTrivialGui__
 
 namespace universe {
-    template<typename derived>
+    template<typename dType>
     class trivialGui {
     public:
         using typeTag = Gui;
@@ -11,7 +11,7 @@ namespace universe {
         trivialGui() {}
         ~trivialGui() {}
         void draw() {
-            static_cast<derived*>(this)->derived::log("Drawing Data!\n");
+            as<dType*>(this)->log("Drawing Data!\n");
         }
 
     };

@@ -2,7 +2,7 @@
 #define __UniversalReflection__
 
 namespace universe {
-    template<typename derived>
+    template<typename dType>
     class refl {
     public:
 
@@ -12,7 +12,7 @@ namespace universe {
         refl() {}
         ~refl() {}
         void show() {
-            static_cast<derived*>(this)->derived::log("Calling Refl!\n");
+            as<dType*>(this)->log("Calling Refl!\n");
         }
 
     };

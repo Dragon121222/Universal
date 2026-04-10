@@ -2,7 +2,7 @@
 #define __UniversalTrivialFileIO__
 
 namespace universe {
-    template<typename derived>
+    template<typename dType>
     class trivialFileIO {
     public:
         using typeTag = FileIO;
@@ -11,7 +11,7 @@ namespace universe {
         trivialFileIO() {}
         ~trivialFileIO() {}
         void save() {
-            static_cast<derived*>(this)->derived::log("Saving Data!\n");
+            as<dType*>(this)->log("Saving Data!\n");
         }
 
     };

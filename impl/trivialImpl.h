@@ -2,7 +2,7 @@
 #define __UniversalImplmentation__
 
 namespace universe {
-    template<typename derived>
+    template<typename dType>
     class trivialImpl {
     public:
 
@@ -12,7 +12,7 @@ namespace universe {
         trivialImpl() {}
         ~trivialImpl() {}
         void call() {
-            static_cast<derived*>(this)->derived::log("Calling Implmentation!\n");
+            as<dType*>(this)->log("Calling Implmentation!\n");
         }
 
     };

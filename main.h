@@ -9,6 +9,9 @@ namespace universe {
 
     using str_t = std::string;
 
+    template<typename A, typename B>
+    A as(B* original) { return static_cast<A>(original); }
+
 }
 
 #include "baseClassDrake.h"

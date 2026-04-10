@@ -2,7 +2,7 @@
 #define __UniversalTrivialReflection__
 
 namespace universe {
-    template<typename derived>
+    template<typename dType>
     class trivialRefl {
     public:
 
@@ -12,7 +12,7 @@ namespace universe {
         trivialRefl() {}
         ~trivialRefl() {}
         void show() {
-            static_cast<derived*>(this)->derived::log("Calling Refl!\n");
+            as<dType*>(this)->log("Calling Refl!\n");
         }
 
     };
