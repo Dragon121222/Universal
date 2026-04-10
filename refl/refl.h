@@ -5,6 +5,10 @@ namespace universe {
     template<typename derived>
     class refl {
     public:
+
+        using typeTag = Refl;
+        using type    = refl;
+
         refl() {}
         ~refl() {}
         void show() {

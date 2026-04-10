@@ -2,14 +2,16 @@
 
 int main() {
 
-    universe::demoUnion x; 
+    using namespace universe;
+
+    demoMixin x; 
 
     x.log("Test Log\n");
     x.call();
     x.draw();
     x.save();
     x.show();
-    x.ipc_t::send();
-    x.net_t::send();
+    x.as<Ipc>::send();
+    x.as<Net>::send();
 
 }

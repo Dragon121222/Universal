@@ -3,36 +3,74 @@
 
 namespace universe {
 
-template<
-    typename impl,
-    typename ipc,
-    typename gui,
-    typename term,
-    typename file,
-    typename net,
-    typename refl
->
-class unionClass : 
-    public impl,
-    public ipc,
-    public gui,
-    public term,
-    public file,
-    public net,
-    public refl 
-{
-public:
+// template<
+//     typename impl,
+//     typename ipc,
+//     typename gui,
+//     typename term,
+//     typename file,
+//     typename net,
+//     typename refl
+// >
+// class unionClass : 
+//     public impl,
+//     public ipc,
+//     public gui,
+//     public term,
+//     public file,
+//     public net,
+//     public refl 
+// {
+// public:
     
-    using impl_t = impl;
-    using ipc_t = ipc;
-    using gui_t = gui;
-    using term_t = term;
-    using file_t = file;
-    using net_t = net;
-    using refl_t = refl;
+//     using impl_t = impl;
+//     using ipc_t = ipc;
+//     using gui_t = gui;
+//     using term_t = term;
+//     using file_t = file;
+//     using net_t = net;
+//     using refl_t = refl;
 
-    unionClass() {}
-    ~unionClass() {}
+//     unionClass() {}
+//     ~unionClass() {}
+// };
+
+// --- tag_of ---
+template <typename T>
+using tag_of = typename T::typeTag;
+
+// --- all_tagged: filter pack into tuple by tag ---
+template <typename Tag, typename Accumulator, typename... Ts>
+struct all_tagged_impl;
+
+// Base: nothing left, return accumulator
+template <typename Tag, typename... Accumulated>
+struct all_tagged_impl<Tag, std::tuple<Accumulated...>> {
+    using type = std::tuple<Accumulated...>;
+};
+
+// Match: tag matches, append T
+template <typename Tag, typename... Accumulated, typename T, typename... Rest>
+struct all_tagged_impl<Tag, std::tuple<Accumulated...>, T, Rest...>
+    : std::conditional_t<
+    std::is_same_v<tag_of<T>, Tag>,
+    all_tagged_impl<Tag, std::tuple<Accumulated..., T>, Rest...>,
+    all_tagged_impl<Tag, std::tuple<Accumulated...>,    Rest...>
+    > {};
+
+template <typename Tag, typename... Ts>
+using all_tagged = typename all_tagged_impl<Tag, std::tuple<>, Ts...>::type;
+
+
+
+template <typename... Ts>
+struct mixin : Ts... {
+public:
+    template <typename Tag, std::size_t I=0>
+    using as = std::tuple_element_t<I, all_tagged<Tag, Ts...>>::type;
+
+    mixin() {}
+    ~mixin() {}
 };
 
 }

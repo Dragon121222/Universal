@@ -3,10 +3,14 @@
 
 namespace universe {
     template<typename derived>
-    class ipc {
+    class trivialIpc {
     public:
-        ipc() {}
-        ~ipc() {}
+
+        using typeTag = Ipc;
+        using type    = trivialIpc;
+
+        trivialIpc() {}
+        ~trivialIpc() {}
         void send() {
             static_cast<derived*>(this)->derived::log("Calling IPC!\n");
         }

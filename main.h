@@ -2,6 +2,8 @@
 #define __MainInclude__
 
 #include <iostream>
+#include <tuple>
+#include <type_traits>
 
 namespace universe {
 
@@ -10,32 +12,32 @@ namespace universe {
 }
 
 #include "baseClassDrake.h"
-#include "file/file.h"
-#include "gui/gui.h"
-#include "impl/impl.h"
-#include "ipc/ipc.h"
-#include "network/network.h"
-#include "reflection/reflection.h"
-#include "terminal/terminal.h"
+#include "fileIO/include.h"
+#include "gui/include.h"
+#include "impl/include.h"
+#include "ipc/include.h"
+#include "net/include.h"
+#include "refl/include.h"
+#include "term/include.h"
 
 namespace universe {
 
-    class demoUnion;
+    class demoMixin;
 
-    using demoUnion_t = universe::unionClass<
-        universe::impl<demoUnion>,
-        universe::ipc<demoUnion>,
-        universe::gui<demoUnion>,
-        universe::term<demoUnion>,
-        universe::file<demoUnion>,
-        universe::net<demoUnion>,
-        universe::refl<demoUnion>
+    using demoMixin_t = universe::mixin<
+        universe::trivialImpl<demoMixin>,
+        universe::trivialIpc<demoMixin>,
+        universe::trivialGui<demoMixin>,
+        universe::term<demoMixin>,
+        universe::trivialFileIO<demoMixin>,
+        universe::trivialNet<demoMixin>,
+        universe::trivialRefl<demoMixin>
     >;
 
-    class demoUnion : public demoUnion_t {
+    class demoMixin : public demoMixin_t {
     public:
-        demoUnion() {}
-        ~demoUnion() {}
+        demoMixin() {}
+        ~demoMixin() {}
     };
 
 };
